@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meme generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()">
+    <div class="body-container">
+        <header>
+            <div class="head-container grid">
+                <div class="logo">meme generator </div>
+                <nav class="nav-header flex">
+                    <a href="">gallery</a>
+                    <a href="">memes</a>
+                    <a href="">about</a>
+                </nav>
+                <input type="text" placeholder="search">
+                <div class="key-words">key words: happy funny animals sad popular </div>
+
+
+            </div>
+        </header>
+
+        <main class="main-container">
+
+
+            <div class="modals">
+                <div class="modal  hidden">
+                    <div class="contain-modal flex">
+                        <div> <canvas id="canvas-meme" width="500" height="500"></canvas></div>
+
+                        <div class="edit-meme">
+
+                            <input oninput="writeTxt(this)" class="text-input" type="text">
+
+                            <div class="switch-trash-add">
+                                <button onclick="switchLines()"><img class="btn switch" src="ICONS/updownarrows.png"
+                                        alt=""></button>
+                                <button><img class="btn trash" src="ICONS/trash.png" alt=""></button>
+                                <button onclick="onAddLine()"><img class="btn add" src="ICONS/add.png" alt=""></button>
+                            </div>
+                            <!-- <button><img class="btn trash" src="ICONS/trash.png" alt=""></button> -->
+                            <button><img class="btn trash" src="ICONS/trash.png" alt=""></button>
+                            <button onclick="onIncreaseFont()"><img class="btn" src="ICONS/increase font - icon.png"
+                                    alt=""></button>
+                            <button onclick="onDecreaseFont()"><img class="btn" src="ICONS/decrease font - icon.png"
+                                    alt=""></button>
+                            <button><img class="btn left" src="ICONS/align-to-left.png" alt=""></button>
+                            <button><img class="btn center" src="ICONS/center-text-alignment.png" alt=""></button>
+                            <button><img class="btn right" src="ICONS/align-to-right.png" alt=""></button>
+                            <button onclick="onUpLine()" class="btn-upLine">up line</button>
+                            <button onclick="onDownLine()" class="btn-downLine">down line</button>
+                            <input type="color">
+
+                            <button> <a class="btn-download" href="#" onclick="onDownloadCanvas(this) "
+                                    download="">download</a> </button>
+                            <button>share</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-close" onclick="closeModal()"> close</button>
+                </div>
+
+                <div class="gallery grid">
+
+
+
+
+
+
+                </div>
+
+
+
+                <div class="card-img"> <img src="${img.url}"> </div>
+
+
+            </div>
+
+
+
+
+        </main>
+        <footer>
+            <button onclick="onPrevPage()" class="btn" data-trans="prev-page"> previous page</button>
+            footer
+            <button onclick="onNextPage()" class="btn" data-trans="next-page"> next page</button>
+        </footer>
+
+
+    </div>
+
+
+    <script src="js/storage.js"></script>
+    <script src="js/controller-try-2.js"></script>
+    <script src="js/service.js"></script>
+    <!-- <script src="js/controller.js"></script> -->
+
+
+</body>
+
+</html>
