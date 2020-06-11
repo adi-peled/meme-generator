@@ -29,9 +29,9 @@ function onResizeCanvas() {
     // gElCanvas.width = 450;
     var elContainer = document.querySelector('#canvas-meme');
     // if(screen.width<1000)
-    gElCanvas.width -= 5;
-    gElCanvas.height -= 5;
-    renderMeme()
+    // gElCanvas.width -= 5;
+    // gElCanvas.height -= 5;
+    // renderMeme()
 }
 
 

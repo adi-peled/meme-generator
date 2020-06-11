@@ -132,7 +132,6 @@ function resizeCanvas() {
 
 }
 
-
 function searchKey(value) {
     var imgs = []
     // var ids = []
@@ -143,5 +142,12 @@ function searchKey(value) {
             }
         })
     })
-    renderImgs(imgs)
+    if (value) {
+        renderImgs(imgs)
+    } else {
+        renderImgs()
+    }
+
+
+
 }   
