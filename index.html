@@ -8,61 +8,75 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="init()">
-    <div class="body-container">
+<body onresize="onResizeCanvas()" onload="init()">
+    <div class="body-container flex">
         <header>
             <div class="head-container grid">
                 <div class="logo">meme generator </div>
-                <nav class="nav-header flex">
+                <button class="btn-menu" onclick="onToggleMenu()">☰</button>
+                <nav class="nav-header  flex menu ">
                     <a href="">gallery</a>
                     <a href="">memes</a>
                     <a href="">about</a>
                 </nav>
-                <input type="text" placeholder="search">
+                <input oninput="onSearchKey(this.value)" class="search-input" type="text" placeholder="search">
                 <div class="key-words">key words: happy funny animals sad popular </div>
 
 
             </div>
         </header>
 
-        <main class="main-container">
+        <main class="main-container ">
 
 
             <div class="modals">
                 <div class="modal  hidden">
                     <div class="contain-modal flex">
-                        <div> <canvas id="canvas-meme" width="500" height="500"></canvas></div>
+                        <div> <canvas id="canvas-meme"></canvas></div>
 
-                        <div class="edit-meme">
+                        <div class="edit-meme  ">
+                            <div class="edit-container flex">
+                                <input oninput="writeTxt(this)" class="text-input" type="text">
+                                <div class="s-a-t flex">
+                                    <button class="btn switch" onclick="onSwitchLines()"><img
+                                            src="ICONS/updownarrows.png"></button>
+                                    <button class="btn add" onclick="onAddLine()"><img src="ICONS/add.png"></button>
+                                    <button class="btn trash" onclick="onDeleteLine()"><img
+                                            src="ICONS/trash.png"></button>
+                                </div>
+                                <div class="edit-line flex">
+                                    <button class="btn inc" onclick="onIncreaseFont()"><img
+                                            src="ICONS/increase font - icon.png"></button>
+                                    <button class="btn dec" onclick="onDecreaseFont()"><img
+                                            src="ICONS/decrease font - icon.png"></button>
+                                    <button class="btn left"> <img src="ICONS/align-to-left.png" alt=""></button>
+                                    <button class="btn center"><img src="ICONS/center-text-alignment.png"
+                                            alt=""></button>
+                                    <button class="btn right"><img src="ICONS/align-to-right.png" alt=""></button>
 
-                            <input oninput="writeTxt(this)" class="text-input" type="text">
+                                    <div class="edit-colors-font flex">
+                                        <select name="" id="select-font">
+                                            <option value="impact">impact</option>
+                                        </select>
+                                        <input class="outline" onchange="changeOutlineColor()" type="color">
+                                        <input class="fill" onchange="changeFillColor()" type="color">
+                                        <button onclick="onUpLine()" class="btn upLine"> <img
+                                                src="ICONS/up-arrow.png"></button>
+                                        <button onclick="onDownLine()" class="btn downLine"><img
+                                                src="ICONS/down-arrow.png"></button>
+                                    </div>
+                                </div>
+                                <div class="save flex">
+                                    <button class="btn-share">share</button>
+                                    <button class="btn-download"> <a href="#" onclick="onDownloadCanvas(this) "
+                                            download="">download</a> </button>
 
-                            <div class="switch-trash-add">
-                                <button onclick="switchLines()"><img class="btn switch" src="ICONS/updownarrows.png"
-                                        alt=""></button>
-                                <button><img class="btn trash" src="ICONS/trash.png" alt=""></button>
-                                <button onclick="onAddLine()"><img class="btn add" src="ICONS/add.png" alt=""></button>
+                                    <button class="btn-close" onclick="closeModal()"> close</button>
+                                </div>
                             </div>
-                            <!-- <button><img class="btn trash" src="ICONS/trash.png" alt=""></button> -->
-                            <button><img class="btn trash" src="ICONS/trash.png" alt=""></button>
-                            <button onclick="onIncreaseFont()"><img class="btn" src="ICONS/increase font - icon.png"
-                                    alt=""></button>
-                            <button onclick="onDecreaseFont()"><img class="btn" src="ICONS/decrease font - icon.png"
-                                    alt=""></button>
-                            <button><img class="btn left" src="ICONS/align-to-left.png" alt=""></button>
-                            <button><img class="btn center" src="ICONS/center-text-alignment.png" alt=""></button>
-                            <button><img class="btn right" src="ICONS/align-to-right.png" alt=""></button>
-                            <button onclick="onUpLine()" class="btn-upLine">up line</button>
-                            <button onclick="onDownLine()" class="btn-downLine">down line</button>
-                            <input type="color">
-
-                            <button> <a class="btn-download" href="#" onclick="onDownloadCanvas(this) "
-                                    download="">download</a> </button>
-                            <button>share</button>
                         </div>
                     </div>
 
-                    <button class="btn-close" onclick="closeModal()"> close</button>
                 </div>
 
                 <div class="gallery grid">
@@ -76,7 +90,7 @@
 
 
 
-                <div class="card-img"> <img src="${img.url}"> </div>
+
 
 
             </div>
@@ -85,10 +99,12 @@
 
 
         </main>
-        <footer>
-            <button onclick="onPrevPage()" class="btn" data-trans="prev-page"> previous page</button>
-            footer
-            <button onclick="onNextPage()" class="btn" data-trans="next-page"> next page</button>
+        <footer class="">
+            <div class="btns-pages flex">
+                <button onclick="onPrevPage()" class="btn" data-trans="prev-page"> previous page</button>
+
+                <button onclick="onNextPage()" class="btn" data-trans="next-page"> next page</button>
+            </div>
         </footer>
 
 
@@ -96,9 +112,10 @@
 
 
     <script src="js/storage.js"></script>
-    <script src="js/controller-try-2.js"></script>
+    <script src="js/controller.js"></script>
     <script src="js/service.js"></script>
-    <!-- <script src="js/controller.js"></script> -->
+    <script src="js/controller-2.js"></script>
+
 
 
 </body>

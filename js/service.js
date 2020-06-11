@@ -1,49 +1,52 @@
 
 'use strict'
 var num = 19
-const PAGE_SIZE = 5
+const PAGE_SIZE = 6
 var gPageIdx = 0;
 
 var gId = 0
-var gKeywords = { 'happy': 12, 'popular': 7, 'animals': 4, 'funny': 6, 'cute': 2, 'evil': 4 }
+var gKeywords = { 'happy': 12, 'popular': 7, 'animals': 4, 'funny': 6, 'cute': 2, 'evil': 4, 'politicain': 3 }
 // var gImgs = [{ id: 1, url: 'img/popo.jpg', keywords: ['happy'] }];
 var gKeywordsImgs =
-    ['popular', 'animals', 'cute', 'animals', 'cute', 'funny', 'funny', 'funny', 'evil', 'funny', 'popular', 'funny', 'cute', 'evil', 'funny', 'popular', 'funny', 'cute']
-var imgNames = ['trump', 'dogs', 'sleep', 'cat', 'strong baby']
+    [['popular', 'politician'], ['animals', 'cute'], ['animals', 'cute'], ['animals', 'cute'], ['funny', 'cute'],
+    ['popular', 'politician'], ['animals', 'cute'], ['animals', 'cute'], ['animals', 'cute'], ['funny', 'cute'],
+    ['popular', 'politician'], ['animals', 'cute'], ['animals', 'cute'], ['animals', 'cute'], ['funny', 'animals'],
+    ['animals', 'cute'], ['politician', 'cute'], ['animals', 'funny'], ['cute', 'funny'],]
+// var imgNames = ['trump', 'dogs', 'sleep', 'cat', 'strong baby']
 var gImgs = createImgs()
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I never eat Falafel',
-            size: 40,
+            txt: 'text here',
+            size: 50,
             align: 'left',
-            color: 'red',
-            position: { x: 100, y: 100 }
+            color: { outLine: 'green', fill: 'blue' },
+            position: { x: 150, y: 100 }
         },
         {
-            txt: 'gdrgdr',
+            txt: 'text here',
             size: 40,
             align: 'left',
-            color: 'red',
-            position: { x: 100, y: 400 }
+            color: { outLine: 'yellow', fill: 'red' },
+            position: { x: 150, y: 400 }
         }
     ]
 }
 
-function createImg(url, keyword) {
+function createImg(url, keywords) {
     var img = {
         id: ++gId,
         url: url,
-        keywords: [keyword]
+        keywords: keywords
     }
     return img
 }
 function createImgs() {
     var imgs = []
-    for (var i = 1; i < num; i++) {
-        var img = createImg(`/meme-imgs (square)/${i}.jpg`, gKeywordsImgs[i])
+    for (var i = 0; i < num; i++) {
+        var img = createImg(`imgs/${i + 1}.jpg`, gKeywordsImgs[i])
         imgs.push(img)
     }
     return imgs
@@ -83,14 +86,14 @@ function prevPage() {
 
 function addLine() {
     var line = {
-        txt: 'edit txt',
+        txt: 'text here',
         size: 40,
         align: 'left',
-        color: 'red',
-        position: { x: 100, y: 250 }
-
+        color: { outLine: 'green', fill: 'blue' },
+        position: { x: 180, y: 250 }
     }
     gMeme.lines.push(line)
+
 }
 
 
@@ -104,7 +107,7 @@ function switchLines() {
 
 function increaseFont() {
     gMeme.lines[gMeme.selectedLineIdx].size++
-    console.log(gMeme)
+
 }
 
 
@@ -112,14 +115,33 @@ function decreaseFont() {
     gMeme.lines[gMeme.selectedLineIdx].size--
 }
 
-
-
-
-
 function downLine() {
-
+    gMeme.lines[gMeme.selectedLineIdx].position.y += 10
 }
 
 function upLine() {
+    gMeme.lines[gMeme.selectedLineIdx].position.y -= 10
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 
 }
+function resizeCanvas() {
+
+
+}
+
+
+function searchKey(value) {
+    var imgs = []
+    // var ids = []
+    gImgs.filter(function (img) {
+        img.keywords.filter(function (word) {
+            if (word.includes(value)) {
+                imgs.push(img)
+            }
+        })
+    })
+    renderImgs(imgs)
+}   

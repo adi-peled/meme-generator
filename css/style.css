@@ -5,28 +5,48 @@ body {
 .body-container {
     max-width: 980px;
     margin: auto;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* header */
 
 header {
-    background-color: aqua;
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
 }
 
 .head-container {
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: 3fr 1fr;
+    grid-template-rows: 1fr 0.2fr;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    margin: 15px;
+}
+
+.search-input {
+    height: fit-content;
+    align-self: center;
+}
+
+.btn-menu {
+    display: none;
 }
 
 .logo {
     grid-column: span 4;
     font-size: 45px;
+    color: white;
 }
 
 .nav-header {
     grid-column: 7/11;
     justify-content: space-between;
     font-size: 30px;
+    color: white;
 }
 
 .key-words {
@@ -34,8 +54,9 @@ header {
 }
 
 .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 5px;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 10px;
+    justify-content: center;
 }
 
 /* modals */
@@ -44,7 +65,7 @@ header {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background-color: rgba(128, 128, 128, 0.363);
+    /* background-color: rgba(128, 128, 128, 0.363); */
 }
 
 .hidden {
@@ -55,15 +76,79 @@ header {
     background-color: lightblue;
 }
 
-.edit-meme {
-    background-color: lightcoral;
-    height: 500px;
-    width: 500px;
+.card-img {
+    width: 250px;
+    height: 250px;
 }
 
-.btn {
+.edit-meme {
+    background-color: #22252c;
+}
+
+.edit-container {
+    max-width: 450px;
+    margin: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.edit-line {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+}
+
+.edit-colors-font {
+    justify-content: space-around;
+    width: 100%;
+}
+
+.s-a-t {
+    justify-content: space-around;
+}
+
+.btn img {
     width: 50px;
     height: 50px;
+}
+
+.save {
+    justify-content: space-around;
+}
+
+.btn-share {
+    width: 30%;
+    background-color: blue;
+}
+
+.btn-download {
+    background-color: blueviolet;
+    width: 30%;
+}
+
+.main-container {
+    justify-content: center;
+}
+
+.switch {
+    background-color: lightblue;
+}
+
+.outline {
+    background-image: url("/ICONS/paint-board-and-brush.png");
+}
+
+.fill {
+    background-image: url("/ICONS/paint-board-and-brush.png");
+}
+
+.add {
+    background-color: green;
+}
+
+.trash {
+    background-color: red;
 }
 
 .btn-download {
@@ -74,6 +159,25 @@ header {
 .text-input {
     width: 60%;
     margin: 5px;
+    grid-column: span 5;
+}
+
+/* footer */
+
+footer {
+    height: 100px;
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+}
+
+.btns-pages {
+    max-height: 70%;
+    justify-content: space-around;
+}
+
+.btns-pages .btn {
+    margin: 15px;
+    width: 20%;
+    height: 50%;
 }
 
 /* helpers */
@@ -88,4 +192,29 @@ header {
 
 button {
     cursor: pointer;
+}
+
+@media screen and (max-width: 890px) {
+    .nav-header {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .hidden {
+        display: none;
+    }
+    .menu {
+        position: fixed;
+        background-color: rgba(153, 205, 50, 0.322);
+    }
+    a:hover {
+        border: 1px green solid;
+        background-color: rgba(153, 205, 50, 0.455);
+    }
+    .btn-menu {
+        display: block;
+        align-self: flex-start;
+        grid-column: 10/-1;
+    }
 }
