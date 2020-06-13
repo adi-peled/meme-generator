@@ -8,31 +8,32 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onresize="onResizeCanvas()" onload="init()">
+<body onload="init()">
     <div class="body-container flex">
         <header>
-            <div class="head-container grid">
+            <div class="head-container flex">
                 <div class="logo">meme generator </div>
                 <button class="btn-menu" onclick="onToggleMenu()">☰</button>
                 <nav class="nav-header  flex menu ">
-                    <a href="">gallery</a>
-                    <a href="">memes</a>
-                    <a href="">about</a>
-                </nav>
-                <input oninput="onSearchKey(this.value)" class="search-input" type="text" placeholder="search">
-                <div class="key-words">key words: happy funny animals sad popular </div>
 
+                    <div> <a href="">gallery</a></div>
+                    <div> <a href="">memes</a> </div>
+                    <div> <a href="">about</a> </div>
+                </nav>
 
             </div>
         </header>
 
-        <main class="main-container ">
+        <main class="main-container flex ">
 
-
+            <div class="keys flex">
+                <input oninput="onSearchKey(this.value)" class="search-input" type="text" placeholder="Search">
+                <div class="key-words">key words: happy funny animals sad popular </div>
+            </div>
             <div class="modals">
                 <div class="modal  hidden">
-                    <div class="contain-modal flex">
-                        <div> <canvas id="canvas-meme"></canvas></div>
+                    <div  class="contain-modal flex">
+                        <div class="contain-canvas"> <canvas id="canvas-meme"></canvas></div>
 
                         <div class="edit-meme  ">
                             <div class="edit-container flex">

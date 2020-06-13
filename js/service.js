@@ -1,18 +1,17 @@
 
 'use strict'
-var num = 19
+var num = 18
 const PAGE_SIZE = 6
 var gPageIdx = 0;
 
 var gId = 0
-var gKeywords = { 'happy': 12, 'popular': 7, 'animals': 4, 'funny': 6, 'cute': 2, 'evil': 4, 'politicain': 3 }
+var gKeywords = { 'happy': 12, 'popular': 7, 'animals': 4, 'funny': 6, 'cute': 2, 'evil': 4, 'politicain': 3, 'baby': 2 }
 // var gImgs = [{ id: 1, url: 'img/popo.jpg', keywords: ['happy'] }];
 var gKeywordsImgs =
-    [['popular', 'politician'], ['animals', 'cute'], ['animals', 'cute'], ['animals', 'cute'], ['funny', 'cute'],
-    ['popular', 'politician'], ['animals', 'cute'], ['animals', 'cute'], ['animals', 'cute'], ['funny', 'cute'],
-    ['popular', 'politician'], ['animals', 'cute'], ['animals', 'cute'], ['animals', 'cute'], ['funny', 'animals'],
-    ['animals', 'cute'], ['politician', 'cute'], ['animals', 'funny'], ['cute', 'funny'],]
-// var imgNames = ['trump', 'dogs', 'sleep', 'cat', 'strong baby']
+    [['popular', 'politician', 'trump'], ['animals', 'cute'], ['animals', 'cute'], ['animals', 'cute'], ['baby', 'cute'],
+    ['popular', 'history'], ['baby', 'cute'], ['funny', 'cute'], ['evil', 'cute'], ['obama', 'politician'],
+    ['popular', 'sport'], ['haim', 'popular'], ['leonardo', 'funny'], ['animals', 'cute'], ['funny', 'animals'],
+    ['x-men', 'cute'], ['politician', 'popular'], ['doll', 'funny'], ['cute', 'funny'],]
 var gImgs = createImgs()
 var gMeme = {
     selectedImgId: 1,
@@ -62,6 +61,7 @@ function onDownloadCanvas(elLink) {
     elLink.href = data;
     elLink.download = 'my_img';
 }
+
 
 
 
@@ -147,7 +147,4 @@ function searchKey(value) {
     } else {
         renderImgs()
     }
-
-
-
 }   

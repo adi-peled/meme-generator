@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    /* box-sizing: content-box; */
 }
 
 .body-container {
@@ -17,8 +18,25 @@ header {
 }
 
 .head-container {
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: 1fr 0.2fr;
+    justify-content: space-between;
+}
+
+.nav-header {
+    justify-content: space-between;
+}
+
+.nav-header div a {
+    display: block;
+    margin: 0;
+    padding: 15px;
+}
+
+.nav-header div {
+    border-left: solid 1px black;
+}
+
+.nav-header div:hover {
+    background-color: rgba(0, 128, 0, 0.363);
 }
 
 a {
@@ -29,7 +47,8 @@ a {
 
 .search-input {
     height: fit-content;
-    align-self: center;
+    width: 400px;
+    border-radius: 29px;
 }
 
 .btn-menu {
@@ -37,20 +56,23 @@ a {
 }
 
 .logo {
-    grid-column: span 4;
     font-size: 45px;
     color: white;
 }
 
 .nav-header {
-    grid-column: 7/11;
     justify-content: space-between;
     font-size: 30px;
     color: white;
 }
 
-.key-words {
-    grid-column: 7/11;
+.keys {
+    justify-content: space-around;
+    padding: 20px;
+}
+
+main {
+    background-color: #383b42;
 }
 
 .gallery {
@@ -68,6 +90,11 @@ a {
     /* background-color: rgba(128, 128, 128, 0.363); */
 }
 
+.contain-modal {
+    max-width: 980px;
+    justify-content: center;
+}
+
 .hidden {
     display: none;
 }
@@ -83,6 +110,16 @@ a {
 
 .edit-meme {
     background-color: #22252c;
+    width: 50%;
+}
+
+.contain-canvas {
+    width: 450px;
+    height: 450px;
+    /* width: 100%;
+    height: 100%;
+    max-height: 450px;
+    max-width: 450px; */
 }
 
 .edit-container {
@@ -96,6 +133,10 @@ a {
 .edit-line {
     justify-content: space-around;
     flex-wrap: wrap;
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+}
+
+.key-words {
     background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
 }
 
@@ -129,6 +170,7 @@ a {
 
 .main-container {
     justify-content: center;
+    flex-direction: column;
 }
 
 .switch {
@@ -137,6 +179,11 @@ a {
 
 .outline {
     background-image: url("/ICONS/paint-board-and-brush.png");
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
 }
 
 .fill {
@@ -194,19 +241,32 @@ button {
     cursor: pointer;
 }
 
-@media screen and (max-width: 890px) {
+@media screen and (max-width: 640px) {
     .nav-header {
         flex-direction: column;
     }
+    .nav-header div {
+        border-bottom: solid 1px black;
+        border-left: none;
+    }
+    .contain-modal {
+        /* flex-direction: column; */
+    }
+    .hide {
+        display: none;
+    }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 420px) {
     .hidden {
         display: none;
     }
     .menu {
+        top: 30px;
+        right: 0;
         position: fixed;
         background-color: rgba(153, 205, 50, 0.322);
+        justify-self: flex-end;
     }
     a:hover {
         border: 1px green solid;

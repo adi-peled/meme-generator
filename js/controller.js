@@ -8,10 +8,10 @@ var y = 100;
 function init() {
     gElCanvas = document.getElementById('canvas-meme');
     gCtx = gElCanvas.getContext('2d');
-
-    gElCanvas.height = 450;
-    gElCanvas.width = 450;
     renderImgs()
+
+    // gElCanvas.height = 450;
+    // gElCanvas.width = 450;
 }
 
 function renderImgs(imgs = getImgsForDisplay()) {
@@ -24,14 +24,16 @@ function renderImgs(imgs = getImgsForDisplay()) {
     })
     elGallery.innerHTML = strHtml.join('')
 }
+
 function onResizeCanvas() {
+    // console.log(elContainer)
+    var elContainer = document.querySelector('.contain-canvas');
+
+    gElCanvas.width = elContainer.offsetWidth;
+    gElCanvas.height = elContainer.offsetHeight;
+    console.log(elContainer.offsetWidth)
     // gElCanvas.height = 450;
     // gElCanvas.width = 450;
-    var elContainer = document.querySelector('#canvas-meme');
-    // if(screen.width<1000)
-    // gElCanvas.width -= 5;
-    // gElCanvas.height -= 5;
-    // renderMeme()
 }
 
 
@@ -40,7 +42,8 @@ function createMeme(imgId) {
     var meme = getGmeme()
     meme.selectedImgId = imgId
     renderMeme()
-
+    onResizeCanvas()
+    renderMeme()
 }
 
 function renderMeme() {
@@ -101,7 +104,7 @@ function onAddLine() {
 }
 
 
-// line.txt, line.position.x, line.position.y,
+
 function drawText(idx) {
     var meme = getGmeme()
     var text = meme.lines[idx].txt
@@ -112,7 +115,7 @@ function drawText(idx) {
     gCtx.fillStyle = meme.lines[idx].color.fill;
     gCtx.font = meme.lines[idx].size + 'px impact'
     gCtx.textAlign = meme.lines[idx].align;
-    // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
     var widthWord = gCtx.measureText(meme.lines[idx].txt).width
@@ -137,20 +140,35 @@ function drawRect(x, y, txt) {
     gCtx.stroke();
 }
 
-
-
-
 function onToggleMenu() {
     document.querySelector('.menu').classList.toggle('hidden')
 }
-
-
-
-
-
 
 function onSearchKey() {
     var sreachValue = document.querySelector('.search-input').value
     searchKey(sreachValue)
 
 }
+
+
+
+// var elem = document.getElementById('canvas-meme');
+// var elemLeft = elem.offsetLeft + elem.clientLeft;
+// var elemTop = elem.offsetTop + elem.clientTop;
+// var context = elem.getContext('2d');
+// var elements = [];
+// console.log(elem, elemLeft, elemTop)
+
+// elem.addEventListener('click', function (event) {
+//     var x = event.pageX - elemLeft,
+//         y = event.pageY - elemTop;
+
+//     // Collision detection between clicked offset and element.
+//     elements.forEach(function (element) {
+//         if (y > element.top && y < element.top + element.height
+//             && x > element.left && x < element.left + element.width) {
+//             alert('clicked an element');
+//         }
+//     });
+
+// }, false);
