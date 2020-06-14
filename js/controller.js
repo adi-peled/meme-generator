@@ -4,14 +4,12 @@ var gElCanvas;
 var gCtx;
 var x = 100;
 var y = 100;
+var gIsDrag = false
 
 function init() {
     gElCanvas = document.getElementById('canvas-meme');
     gCtx = gElCanvas.getContext('2d');
     renderImgs()
-
-    // gElCanvas.height = 450;
-    // gElCanvas.width = 450;
 }
 
 function renderImgs(imgs = getImgsForDisplay()) {
@@ -26,14 +24,12 @@ function renderImgs(imgs = getImgsForDisplay()) {
 }
 
 function onResizeCanvas() {
-    // console.log(elContainer)
     var elContainer = document.querySelector('.contain-canvas');
 
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
     console.log(elContainer.offsetWidth)
-    // gElCanvas.height = 450;
-    // gElCanvas.width = 450;
+
 }
 
 
@@ -50,13 +46,14 @@ function renderMeme() {
     var meme = getGmeme()
     renderImg(meme.selectedImgId)
     renderTxt()
+    updateColors()
     drawRect(meme.lines[meme.selectedLineIdx].position.x, meme.lines[meme.selectedLineIdx].position.y, meme.lines[meme.selectedLineIdx].txt)
 }
 
-function renderTxt(txt, position) {
+function renderTxt() {
     var meme = getGmeme()
-    meme.lines.forEach(function (line, idx) {
-        drawText(idx)
+    meme.lines.forEach(function (line) {
+        drawText(line)
     })
 }
 
@@ -98,32 +95,51 @@ function onAddLine() {
     var meme = getGmeme()
     addLine()
     meme.selectedLineIdx = meme.lines.length - 1
-
     renderMeme()
-
 }
 
-
-
-function drawText(idx) {
+function onDragTxt(ev) {
     var meme = getGmeme()
-    var text = meme.lines[idx].txt
-    var x = meme.lines[idx].position.x
-    var y = meme.lines[idx].position.y
-    gCtx.lineWidth = '2';
-    gCtx.strokeStyle = meme.lines[idx].color.outLine;
-    gCtx.fillStyle = meme.lines[idx].color.fill;
-    gCtx.font = meme.lines[idx].size + 'px impact'
-    gCtx.textAlign = meme.lines[idx].align;
-
-    gCtx.fillText(text, x, y);
-    gCtx.strokeText(text, x, y);
-    var widthWord = gCtx.measureText(meme.lines[idx].txt).width
-
-    meme.lines[idx].width = widthWord
-
-
+    ev.preventDefault()
+    if (!gIsDrag) return
+    if (ev.type === 'mousemove') {
+        var { offsetX, offsetY } = ev;
+        meme.lines[meme.selectedLineIdx].position.y = offsetY
+        meme.lines[meme.selectedLineIdx].position.x = offsetX
+        renderMeme()
+    } else {
+        var rect = ev.target.getBoundingClientRect();
+        var x = ev.targetTouches[0].pageX - rect.left;
+        var y = ev.targetTouches[0].pageY - rect.top;
+        meme.lines[meme.selectedLineIdx].position.y = y
+        meme.lines[meme.selectedLineIdx].position.x = x
+        renderMeme()
+    }
+    // drawLine(x, y)
 }
+
+function onStopDrag() {
+    gIsDrag = false
+    // stopDrag()
+}
+
+function onStartDrag() {
+    gIsDrag = true
+}
+
+function drawText(line) {
+    const { txt, position } = line
+    gCtx.lineWidth = '2';
+    gCtx.strokeStyle = line.color.outLine;
+    gCtx.fillStyle = line.color.fill;
+    gCtx.font = line.size + 'px impact'
+    gCtx.textAlign = line.align;
+    gCtx.fillText(txt, position.x, position.y);
+    gCtx.strokeText(txt, position.x, position.y);
+    var widthWord = gCtx.measureText(txt).width
+    line.width = widthWord
+}
+
 function writeTxt() {
     var txt = document.querySelector('.text-input').value
     var meme = getGmeme()
@@ -132,7 +148,7 @@ function writeTxt() {
     renderMeme()
 }
 
-function drawRect(x, y, txt) {
+function drawRect(x, y) {
     var meme = getGmeme()
     gCtx.beginPath();
     gCtx.rect(x, y, meme.lines[meme.selectedLineIdx].width, -meme.lines[meme.selectedLineIdx].size);
@@ -150,25 +166,8 @@ function onSearchKey() {
 
 }
 
-
-
-// var elem = document.getElementById('canvas-meme');
-// var elemLeft = elem.offsetLeft + elem.clientLeft;
-// var elemTop = elem.offsetTop + elem.clientTop;
-// var context = elem.getContext('2d');
-// var elements = [];
-// console.log(elem, elemLeft, elemTop)
-
-// elem.addEventListener('click', function (event) {
-//     var x = event.pageX - elemLeft,
-//         y = event.pageY - elemTop;
-
-//     // Collision detection between clicked offset and element.
-//     elements.forEach(function (element) {
-//         if (y > element.top && y < element.top + element.height
-//             && x > element.left && x < element.left + element.width) {
-//             alert('clicked an element');
-//         }
-//     });
-
-// }, false);
+function updateColors() {
+    var meme = getGmeme()
+    document.querySelector('.outline').value = meme.lines[meme.selectedLineIdx].color.outLine
+    document.querySelector('.fill').value = meme.lines[meme.selectedLineIdx].color.fill
+}

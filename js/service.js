@@ -1,7 +1,7 @@
 
 'use strict'
 var num = 18
-const PAGE_SIZE = 6
+const PAGE_SIZE = 10
 var gPageIdx = 0;
 
 var gId = 0
@@ -21,14 +21,14 @@ var gMeme = {
             txt: 'text here',
             size: 50,
             align: 'left',
-            color: { outLine: 'green', fill: 'blue' },
+            color: { outLine: '#f45364', fill: '#454332' },
             position: { x: 150, y: 100 }
         },
         {
             txt: 'text here',
             size: 40,
             align: 'left',
-            color: { outLine: 'yellow', fill: 'red' },
+            color: { outLine: '#333444', fill: '#488991' },
             position: { x: 150, y: 400 }
         }
     ]
@@ -107,7 +107,6 @@ function switchLines() {
 
 function increaseFont() {
     gMeme.lines[gMeme.selectedLineIdx].size++
-
 }
 
 
@@ -127,19 +126,12 @@ function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 
 }
-function resizeCanvas() {
 
-
-}
 
 function searchKey(value) {
-    var imgs = []
-    // var ids = []
-    gImgs.filter(function (img) {
-        img.keywords.filter(function (word) {
-            if (word.includes(value)) {
-                imgs.push(img)
-            }
+    var imgs = gImgs.filter(function (img) {
+        return img.keywords.some(function (word) {
+            return word.includes(value)
         })
     })
     if (value) {
@@ -147,4 +139,9 @@ function searchKey(value) {
     } else {
         renderImgs()
     }
-}   
+}
+
+
+
+
+

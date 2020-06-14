@@ -20,50 +20,54 @@
                     <div> <a href="">memes</a> </div>
                     <div> <a href="">about</a> </div>
                 </nav>
-
             </div>
         </header>
-
         <main class="main-container flex ">
-
             <div class="keys flex">
                 <input oninput="onSearchKey(this.value)" class="search-input" type="text" placeholder="Search">
                 <div class="key-words">key words: happy funny animals sad popular </div>
             </div>
             <div class="modals">
                 <div class="modal  hidden">
-                    <div  class="contain-modal flex">
-                        <div class="contain-canvas"> <canvas id="canvas-meme"></canvas></div>
-
+                    <div class="contain-modal flex">
+                        <div class="contain-canvas"> <canvas onmouseup="onStopDrag()" onmousedown="onStartDrag()"
+                                ontouchmove="onStartDrag(event)" onmousemove="onDragTxt(event)"
+                                id="canvas-meme"></canvas>
+                        </div>
                         <div class="edit-meme  ">
                             <div class="edit-container flex">
-                                <input oninput="writeTxt(this)" class="text-input" type="text">
+                                <input oninput="writeTxt(this)" class="text-input" title="edit text" type="text">
                                 <div class="s-a-t flex">
-                                    <button class="btn switch" onclick="onSwitchLines()"><img
+                                    <button class="btn switch" title="swtich line" onclick="onSwitchLines()"><img
                                             src="ICONS/updownarrows.png"></button>
-                                    <button class="btn add" onclick="onAddLine()"><img src="ICONS/add.png"></button>
-                                    <button class="btn trash" onclick="onDeleteLine()"><img
+                                    <button class="btn add" title="add line" onclick="onAddLine()"><img
+                                            src="ICONS/add.png"></button>
+                                    <button class="btn trash" title="delete line" onclick="onDeleteLine()"><img
                                             src="ICONS/trash.png"></button>
                                 </div>
                                 <div class="edit-line flex">
-                                    <button class="btn inc" onclick="onIncreaseFont()"><img
+                                    <button class="btn inc" title="increase font" onclick="onIncreaseFont()"><img
                                             src="ICONS/increase font - icon.png"></button>
-                                    <button class="btn dec" onclick="onDecreaseFont()"><img
+                                    <button class="btn dec" title="decrease font" onclick="onDecreaseFont()"><img
                                             src="ICONS/decrease font - icon.png"></button>
-                                    <button class="btn left"> <img src="ICONS/align-to-left.png" alt=""></button>
-                                    <button class="btn center"><img src="ICONS/center-text-alignment.png"
+                                    <button class="btn left" title="text align left"> <img src="ICONS/align-to-left.png"
                                             alt=""></button>
-                                    <button class="btn right"><img src="ICONS/align-to-right.png" alt=""></button>
+                                    <button class="btn center" title="text align center"><img
+                                            src="ICONS/center-text-alignment.png" alt=""></button>
+                                    <button class="btn right" title="text align right"><img
+                                            src="ICONS/align-to-right.png" alt=""></button>
 
                                     <div class="edit-colors-font flex">
                                         <select name="" id="select-font">
                                             <option value="impact">impact</option>
                                         </select>
-                                        <input class="outline" onchange="changeOutlineColor()" type="color">
-                                        <input class="fill" onchange="changeFillColor()" type="color">
-                                        <button onclick="onUpLine()" class="btn upLine"> <img
+                                        <input class="outline" title="outline color" onchange="changeOutlineColor()"
+                                            type="color" value="" >
+                                        <input class="fill" title="fill color" onchange="changeFillColor()"
+                                            type="color" value=""  >
+                                        <button onclick="onUpLine()" class="btn upLine" title="line up"> <img
                                                 src="ICONS/up-arrow.png"></button>
-                                        <button onclick="onDownLine()" class="btn downLine"><img
+                                        <button onclick="onDownLine()" class="btn downLine" title="line down"><img
                                                 src="ICONS/down-arrow.png"></button>
                                     </div>
                                 </div>

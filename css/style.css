@@ -4,7 +4,7 @@ body {
 }
 
 .body-container {
-    max-width: 980px;
+    /* max-width: 980px; */
     margin: auto;
     height: 100vh;
     flex-direction: column;
@@ -18,6 +18,8 @@ header {
 }
 
 .head-container {
+    margin: auto;
+    max-width: 980px;
     justify-content: space-between;
 }
 
@@ -93,6 +95,7 @@ main {
 .contain-modal {
     max-width: 980px;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .hidden {
